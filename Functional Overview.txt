@@ -1,0 +1,53 @@
+Functional Overview
+
+Weather Data Scraper
+
+Fetches daily or hourly climate data from external websites (e.g., Environment Canada).
+
+Automatically parses HTML tables, cleans invalid values, and exports results to CSV.
+
+Data Cleaning
+
+Loads CSV/Excel files.
+
+Removes rows containing user-specified invalid values or nulls.
+
+Exports the cleaned file in CSV or Excel format.
+
+Preprocessing
+
+Extract Columns: Select common columns across multiple files, combine into one dataset.
+
+Merge Files: Merge multiple datasets by time columns (pair-wise or bulk) and export.
+
+GPT Processing
+
+Convert to JSONL: Transforms Excel/CSV data into multi-turn JSONL for GPT-based tasks (chat or fine-tuning).
+
+Train Model (Legacy): Demonstrates how to process a JSONL file with OpenAI’s legacy approach.
+
+JSONL Parser: Extracts structured info from GPT responses via regex patterns.
+
+Fuzzy Analysis
+
+Allows Triangular or Trapezoidal membership functions for numeric columns.
+
+Supports alpha-cuts, membership calculation, and interactive plots.
+
+Exports fuzzy-transformed data to CSV/Excel.
+
+NSE Evaluation
+
+Loads observation and simulation columns.
+
+Calculates R², NSE, RMSE, MAE for hydrological model performance.
+
+Plots observed vs. simulated data.
+
+Card-Based Login
+
+User must enter a valid card number & password.
+
+The system verifies credentials with a remote server.
+
+Prevents unauthorized usage.
