@@ -1,3 +1,7 @@
+HydroGPTdataProcessingApp v1.1
+
+Released by Zhonghao Zhang & Caterina Valeo
+
 HydroGPT‑Fuzzy Application
 Functional Overview & What’s New
 
