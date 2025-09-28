@@ -1,72 +1,130 @@
-HydroGPTdataProcessingApp v1.1
+# Fuzzy-HydroGPT-RTC v2.0  
 
-Released by Zhonghao Zhang & Caterina Valeo
+**Released by Zhonghao Zhang & Caterina Valeo**  
+Based on the research paper:  
+**“FUZZY-BASED INPUT METHOD FOR UNCERTAINTY QUANTIFICATION IN A DETERMINISTIC MODEL: COMPARISON WITH CHATGPT FOR PEAK FLOW PREDICTION.”**
 
-HydroGPT‑Fuzzy Application
-Functional Overview & What’s New
+---
 
-This Python/Tkinter GUI unifies a complete hydrological data workflow—from raw data retrieval and cleaning through fuzzy uncertainty analysis and GPT‑based modeling—into a single, user‑friendly application.
+## 📖 Overview  
 
-Core Features
-Card‑Based Login
-<img width="513" height="436" alt="image" src="https://github.com/user-attachments/assets/9d56b74d-8bb6-44da-a3c4-63816c289342" />
+**Fuzzy-HydroGPT-RTC** integrates a complete hydrological and uncertainty-quantification workflow into a single, user-friendly **PyQt6 interface**.  
+Unlike earlier versions, **v2.0 introduces real-time control (RTC)**, enabling a seamless **data-to-prediction pipeline** that transforms raw inputs into GPT-based flow predictions with near-instant feedback (<10 seconds).  
 
+The tool supports **broad generalization beyond hydrology**—any application that requires real-time data ingestion, GPT processing, and uncertainty quantification can be adapted with minimal configuration.
 
-Secure entry via smart‑card number & password
+---
 
-Remote server authentication to prevent unauthorized use
+## ⚙️ Core Features  
 
-Hydrodata Mining
+### 🔐 Secure Card-Based Login  
+<div align="center">
+<img width="380" alt="image" src="https://github.com/user-attachments/assets/0077a642-5dd5-49e6-b546-e7fb5f43eb51" />
+</div>
 
-Weather Data Scraper: Fetch daily/hourly climate observations (e.g., rainfall, temperature) from public sources; parse, clean, and export to CSV.
+- Authentication via card number and password (`Card.txt` included for testing).  
+- Prevents unauthorized use.  
 
-Flow Gauge Scraper (NEW!): Download river flow measurements from gauge networks; auto‑clean and export.
+---
 
-Hydrological File Processing
+### 🌦 Weather & Flow Data Scraping  
+<div align="center">
+<img width="500"  alt="image" src="https://github.com/user-attachments/assets/d969fcea-1140-4424-b897-135b5964837f" />
+<img width="425"  alt="image" src="https://github.com/user-attachments/assets/bd72c5c9-a915-42ab-a740-7547c6b552bc" />
+</div>
 
-Data Cleaning: Load CSV/Excel, filter out invalid or null entries, and save cleaned data.
+- **Weather Data Scraper:** Fetch daily/hourly climate data (rainfall, temperature, snow, etc.) from public sources.  
+- **Flow Gauge Scraper:** Retrieve river discharge values directly from hydrometric networks.  
+- Auto-clean and export to **CSV/Excel**.  
 
-Extract & Merge: Select common columns across multiple files, merge by timestamp (pairwise or bulk), and export unified datasets.
+---
 
-GPT Processing
+### 🧹 Data Cleaning & File Processing  
+- Load CSV/Excel datasets, filter invalid entries, and save cleaned data.  
+- Extract & merge multiple datasets by timestamp (pairwise or bulk).  
 
-GPT Config: Define API keys, model parameters, and prompt templates.
+---
 
-Multi‑turn JSON: Transform tabular data into JSONL chat sequences for GPT‑based inference or fine‑tuning.
+### 🤖 GPT Flow Prediction (NEW: Real-Time Control)  
+<div align="center">
+<img width="550" alt="image" src="https://github.com/user-attachments/assets/2a4f0562-c59b-4d94-8295-fde6d0794713" />
+<img width="550" alt="image" src="https://github.com/user-attachments/assets/4df79d82-a776-4ff7-a6ae-c69f132de04e" />
+<img width="550" alt="image" src="https://github.com/user-attachments/assets/a9f87a02-493e-4c29-a736-a876197f203a" />
+</div>
 
-Call Fine‑tuning Model: Submit JSONL to OpenAI’s fine‑tuning endpoint and manage jobs.
+- Configure **OpenAI API key & model** in-app.  
+- Convert tabular input ➝ JSONL ➝ GPT call ➝ parsed numeric output automatically.  
+- **Full real-time data loop:**  
+  numeric inputs (Excel) ➝ JSONL ➝ GPT API ➝ JSONL parser ➝ numeric predictions.  
+- Update predictions every ~10 seconds with minimal setup.  
+- Works for hydrology and other fields requiring **real-time inference**.  
 
-JSONL Parser: Regex‑based extraction of structured outputs from GPT responses for downstream analysis.
+---
 
-Fuzzy Analysis
+### 🌫 Fuzzy Uncertainty Analysis  
+<div align="center">
+<img width="550" alt="image" src="https://github.com/user-attachments/assets/36a44872-a3fb-44a7-b71d-a1f118da5b86" >
+</div>
 
-Support for triangular and trapezoidal membership functions on numeric columns.
+- Triangular and trapezoidal membership functions.  
+- Compute **α-cuts**, membership values, and visualize uncertainty intervals.  
+- Export fuzzy interval data to CSV/Excel.  
 
-Compute α‑cuts, membership values, and visualize uncertainty intervals interactively.
+---
 
-Export fuzzy‑interval data to CSV/Excel for further use.
+### 📊 Model Evaluation  
+<div align="center">
+<img width="550" alt="image" src="https://github.com/user-attachments/assets/84bbe9a5-d57d-47f0-a08f-fc4be6fc6f2f" />
+</div>
 
-Model Evaluation (NSE)
+- Compare **observed vs. simulated** datasets.  
+- Compute performance metrics:  
+  - **R²**  
+  - **Nash–Sutcliffe Efficiency (NSE)**  
+  - **RMSE**  
+  - **MAE**  
+- Plot observed–simulated comparisons for validation.  
 
-Load observed vs. simulated time series.
+---
 
-Calculate performance metrics: R², Nash‑Sutcliffe Efficiency (NSE), RMSE, MAE.
+## 🚀 What’s New in v2.0  
 
-Generate observed‑vs‑simulated plots for visual validation.
+- **Real-Time Control (RTC):** Seamlessly connect data sources, GPT calls, and output parsing for predictions within 10 seconds.  
+- **General Applicability:** Not restricted to hydrology—usable in any field with real-time data + GPT integration.  
+- **PyQt6 Interface:** Modern, responsive UI with stability fixes and enhanced usability.  
+- **Expanded Help System:** Built-in instructions on each tab.  
+- **Bug Fixes:** Improved data scraping, JSONL parsing, and evaluation modules for reliability.  
 
-What’s New in This Version
-Flow Gauge Scraper tab integrated alongside the existing Weather Scraper to automate retrieval of river flow data from online gauge services.
+---
 
-Card‑Based Login mechanism added to secure the application and restrict access to authorized users.
+## 🛠 Getting Started  
 
-Unified all major data‑processing steps—climate scraping, hydrological cleaning/merging, GPT workflows, fuzzy uncertainty analysis, and performance evaluation—into a single tabbed interface for seamless end‑to‑end operation.
+### 1. Download Release  
+- Get the latest installer from the [Releases](../../releases) section:  
+  **Fuzzy-HydroGPT-RTC v2.0**.  
 
-Getting Started:
+### 2. Login  
+- Use the `Card.txt` file in the repository for credentials.  
+- Enter your card number and password.  
 
-Login: Insert your card credentials.
+### 3. Configure GPT  
+- Enter your **OpenAI API key** and preferred **model name**.  
+- Save configuration.  
 
-Select a Tab from the menu or File/Workflow menus to run each pipeline stage.
+### 4. Run Real-Time Monitoring  
+- Load your **Excel/CSV input file**.  
+- Start monitoring.  
+- Predictions update automatically every cycle.  
 
-Export results at any stage in CSV/Excel or JSONL formats.
+### 5. Export & Analyze  
+- Export results at any stage (**CSV/Excel/JSONL**).  
+- Perform fuzzy uncertainty analysis or model evaluation.  
 
-For detailed instructions, please see the built‑in help in each tab or refer to the online README.
+---
+
+## 🎓 Academic Access  
+
+For academic or long-term usage licenses, please contact:  
+📧 **valeo@uvic.ca**
+
+---
