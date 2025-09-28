@@ -9,7 +9,7 @@ This Python/Tkinter GUI unifies a complete hydrological data workflow—from raw
 
 Core Features
 Card‑Based Login
-<img width="536" height="459" alt="a3481371dafe70119da1c0cc561002c1" src="https://github.com/user-attachments/assets/5f09c32d-bf94-413a-93b5-d34b9db9163c" />
+<img width="513" height="436" alt="image" src="https://github.com/user-attachments/assets/9d56b74d-8bb6-44da-a3c4-63816c289342" />
 
 
 Secure entry via smart‑card number & password
